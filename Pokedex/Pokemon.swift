@@ -192,7 +192,6 @@ class Pokemon {
                                     self._nextEvolutionLevel = "\(level)"
                                 }
                                 
-                                print(self._nextEvolutionLevel)
                             }
                         }
                     }

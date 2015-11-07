@@ -61,13 +61,14 @@ class PokemonDetailVC: UIViewController {
             
             if pokemon.nextEvolutionLevel != "" {
                 str += " - LVL \(pokemon.nextEvolutionLevel)"
+                evolutionLabel.text = str
             }
+            
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func backButtonPressed(sender: AnyObject) {
