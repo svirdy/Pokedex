@@ -19,6 +19,8 @@ class Pokemon {
     private var _weight: String!
     private var _attack: String!
     private var _nextEvolutionText: String!
+    private var _nextEvolutionId: String!
+    private var _nextEvolutionLevel: String!
     private var _pokemonURL: String!
     
     var name: String {
@@ -104,6 +106,32 @@ class Pokemon {
                     
                 } else {
                     self._description = ""
+                }
+                
+                if let evolutions = dict["evolutions"] as? [Dictionary<String, AnyObject>] where evolutions.count > 0 {
+                    
+                    if let to = evolutions[0]["to"] as? String {
+                        
+                        // Mega is not found - can't support mega for now
+                        if to.rangeOfString("mega") == nil {
+                            
+                            if let uri = evolutions[0]["resource_uri"] as? String {
+                                
+                                let newString = uri.stringByReplacingOccurrencesOfString("/api/v1/pokemon/", withString: "")
+                                
+                                let num = newString.stringByReplacingOccurrencesOfString("/", withString: "")
+                                
+                                self._nextEvolutionId = num
+                                self._nextEvolutionText = to
+                                
+                                if let level = evolutions[0]["level"] as? Int {
+                                    self._nextEvolutionLevel = "\(level)"
+                                }
+                                
+                                print(self._nextEvolutionLevel)
+                            }
+                        }
+                    }
                 }
             }
         }
