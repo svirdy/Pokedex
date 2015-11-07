@@ -12,10 +12,11 @@ class PokemonDetailVC: UIViewController {
     
     var pokemon: Pokemon!
 
+    @IBOutlet weak var nameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        nameLabel.text = pokemon.name
     }
 
     override func didReceiveMemoryWarning() {
